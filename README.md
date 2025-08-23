@@ -25,7 +25,5 @@
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/output/snake-light.svg" />
   <img alt="snake animation" src="https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/output/snake-dark.svg" />
 </picture>
-
-
 </div>
 
