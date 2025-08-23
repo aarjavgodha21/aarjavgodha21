@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -17,13 +18,13 @@ jobs:
         with:
           github_user_name: aarjavgodha21
           outputs: |
-            output/snake-dark.svg?palette=github-dark&color_snake=%2300fff7&color_dots=%23102f43,%23143e53,%231f6995,%2333ffe6,%2300fff7&background=%23041318
-            output/snake-light.svg?palette=github-light&color_snake=%2300758a&color_dots=%23e0f7fa,%23b2ebf2,%237ec6e3,%234ab4c4,%2300758a&background=%23f7fafc
+            output/snake-dark.svg?palette=github-dark&color_snake=%2300fff7&color_dots=%23212222,%239be9a8,%2340c463,%2330a14e,%23021632
+            output/snake-light.svg?palette=github-light&color_snake=%2300758a&color_dots=%23ebedf0,%239be9a8,%2340c463,%2330a14e,%2300758a
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
           author_name: github-actions
           author_email: github-actions@github.com
-          message: "Updated snake SVGs with neon and aesthetic backgrounds"
+          message: "Update snake SVGs with GitHub green grid and neon/dark cyan snake"
           add: "output/*.svg"
