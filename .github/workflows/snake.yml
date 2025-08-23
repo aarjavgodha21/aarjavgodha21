@@ -1,41 +1,49 @@
-name: Generate Snake Game
+name: Generate GitSnake
 
 on:
-  schedule: # Runs at 00:00 UTC every day
-    - cron: "0 0 * * *"
-  workflow_dispatch: # Allow manual runs
+  schedule:
+    - cron: "0 0 * * *"   # daily at 00:00 UTC
+  workflow_dispatch:
+
+# Make sure the job can push to branches
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout main branch
-        uses: actions/checkout@v3
-        with:
-          ref: main
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Generate snake animation
-        uses: Platane/snk@v3
+      # Generate LIGHT theme SVG
+      - name: Generate light SVG
+        uses: Platane/snk/svg-only@v3
         with:
-          github_user_name: aarjavgodha21
-          outputs: dist/github-contribution-grid-snake.svg
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg?palette=github-light&color_snake=%2300A0C6
 
-      - name: Checkout output branch
-        uses: actions/checkout@v3
+      # Generate DARK theme SVG
+      - name: Generate dark SVG
+        uses: Platane/snk/svg-only@v3
         with:
-          ref: output
-          fetch-depth: 0   # fetch full history so commits stack properly
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=%2339FF14
 
-      - name: Move generated files
+      # Debug: confirm both files exist
+      - name: Show dist contents
         run: |
-          rm -rf dist
-          mkdir -p dist
-          cp ../dist/github-contribution-grid-snake.svg ./dist/
+          echo "==== dist listing ===="
+          ls -la dist || true
 
-      - name: Commit & Push changes
-        uses: github-actions-x/commit@v2.9
+      # Publish /dist to the `output` branch
+      - name: Publish to output branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
-          message: "update snake game"
-          push: true
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          target_branch: output
+          build_dir: dist
+          keep_history: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
