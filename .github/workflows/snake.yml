@@ -1,26 +1,87 @@
-name: generate snake
+name: Generate GitSnake
 
 on:
-  schedule: # Runs every 12 hours
-    - cron: "0 */12 * * *"
+  schedule:
+    - cron: "0 */12 * * *" # every 12 hours
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate Snake Game
+      - name: Checkout repository (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate light SVG (minimal + aesthetic)
         uses: Platane/snk/svg-only@v3
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            dist/snake-dark.svg?palette=github-dark&color_snake=#39ff14&color_dots=#00ff7f,#7fff00,#adff2f&stroke=2&animation_duration=auto
-            dist/snake-light.svg?palette=github-light&color_snake=#006400&color_dots=#32cd32,#7cfc00,#98fb98&stroke=2&animation_duration=auto
+            dist/snake-light.svg?palette=github-light&color_snake=%23006400&color_dots=%2332cd32,%237cfc00,%2398fb98&stroke=2&animation_duration=auto
 
-      - name: Push Snake to Output Branch
-        uses: EndBug/add-and-commit@v9
+      - name: Generate dark SVG (neon + minimal)
+        uses: Platane/snk/svg-only@v3
         with:
-          default_author: github_actions
-          message: "generated snake 🐍"
-          add: "dist/*"
-          push: true
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/snake-dark.svg?palette=github-dark&color_snake=%2339ff14&color_dots=%2300ff7f,%237fff00,%23adff2f&stroke=2&animation_duration=auto
+
+      - name: Show generated dist contents (debug)
+        run: |
+          echo "=== dist listing ==="
+          ls -la dist || true
+          echo "=== file preview (first 120 chars each) ==="
+          for f in dist/*; do
+            echo "---- $f ----"
+            head -c 120 "$f" || true
+            echo
+          done
+
+      - name: Save generated files to temp
+        run: |
+          mkdir -p /tmp/snake-dist
+          cp -a dist/* /tmp/snake-dist/ || true
+          echo "Saved $(ls -1 /tmp/snake-dist | wc -l) generated files"
+
+      - name: Prepare output branch and copy files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          git config user.name "GitSnake Action"
+          git config user.email "actions@github.com"
+
+          # fetch remote branches
+          git fetch origin
+
+          # If output exists, check it out, otherwise create orphan
+          if git show-ref --verify --quiet refs/remotes/origin/output; then
+            git checkout output
+            git pull origin output
+          else
+            git checkout --orphan output
+            git reset --hard
+          fi
+
+          # ensure dist directory exists and copy generated files
+          mkdir -p dist
+          cp -a /tmp/snake-dist/* dist/ || true
+
+          # show what we will commit
+          echo "=== files to be committed ==="
+          git status --porcelain
+          ls -la dist || true
+
+          # only commit if changes exist
+          if git add -A && git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update GitSnake (auto)"
+            git push origin HEAD:output
+            echo "Pushed changes to output branch"
+          fi
