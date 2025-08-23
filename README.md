@@ -19,12 +19,13 @@
 
 <div align="center">
 
-### ⚡️ GitSnake
+  ### ⚡️ GitSnake
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/output/snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/output/snake-light.svg" />
-  <img alt="snake animation eating my contributions" src="https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/output/snake-dark.svg" />
-</picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/output/snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/output/snake-light.svg" />
+    <img alt="snake animation eating my contributions" src="https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/output/snake-dark.svg" />
+  </picture>
 </div>
+
 
