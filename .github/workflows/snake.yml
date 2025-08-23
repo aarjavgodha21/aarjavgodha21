@@ -13,18 +13,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Generate snake SVGs
+      - name: Generate snake SVG
         uses: Platane/snk@v3
         with:
           github_user_name: aarjavgodha21
           outputs: |
-            output/snake-dark.svg?palette=github-dark&color_snake=%2300fff7,%2350e6fa,%2330ffb7&color_dots=%23163819,%2334e06d,%2340c463,%2327ae60,%2300fff7
-            output/snake-light.svg?palette=github-light&color_snake=%2300758a,%233dddf3,%2379ffe7&color_dots=%23d9f5e5,%239be9a8,%2340c463,%2330a14e,%2300758a
-
+            output/snake.svg?color_snake=%23000000&color_dots=%23b9f5d8,%23248a3d,%23206a28,%23155522,%23245521
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
           author_name: github-actions
           author_email: github-actions@github.com
-          message: "Update GitSnake with neon cyan glow and green background"
+          message: "Update GitSnake: black snake, light green bg, dark green activity"
           add: "output/*.svg"
