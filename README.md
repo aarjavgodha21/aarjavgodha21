@@ -2,7 +2,7 @@
 🔭 I’m currently working on AI-powered projects and automation tools  <br>🌱 I’m currently learning advanced Data Structures, Algorithms & Quantum Computing  <br>💬 Ask me about Python, C, MySQL, Java and AI projects  <br>⚡ Fun fact: I turned my side projects into hackathon wins 🚀  <br>
 
 
-## 🌐 Socials:
+# 🌐 Socials:
 [![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white)](https://discord.gg/deadlyvictor#0068) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/aarjav.godha21) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/aarjav-godha-74665328b) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:aarjav.godha21@gmail.com) 
 
 # 💻 Tech Stack:
@@ -13,14 +13,8 @@
 ![](https://nirzak-streak-stats.vercel.app/?user=aarjavgodha21&theme=dark&hide_border=false)<br/>
 ![](https://github-readme-stats.vercel.app/api/top-langs/?username=aarjavgodha21&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
 
-### ✍️ Random Dev Quote
+# ✍️ Random Dev Quote
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
 
-
-<div align="center">
-
-### ⚡️ GitSnake
+#⚡️ GitSnake
 <img alt="snake animation eating my contributions" src="https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/main/output/snake.svg" />
-</div>
-
-
