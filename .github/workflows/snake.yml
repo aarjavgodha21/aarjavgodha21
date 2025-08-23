@@ -3,26 +3,26 @@ name: Generate Snake
 on:
   schedule: # Runs every 12 hours
     - cron: "0 */12 * * *"
-  workflow_dispatch: # allows you to run manually
+  workflow_dispatch: # Allow manual run
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Clone repo
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Generate Snake (transparent background)
+      - name: Generate Snake
         uses: Platane/snk/svg-only@v3
         with:
           github_user_name: aarjavgodha21
           outputs: dist/github-contribution-grid-snake.svg
-          snake_color: '#39FF14'   # neon green 🐍
-          background: 'transparent'
 
-      - name: Push Snake Game to Output Branch
-        uses: EndBug/add-and-commit@v9
+      - name: Push to output branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
-          branch: output
-          message: "Generate Snake"
-          add: "dist/github-contribution-grid-snake.svg"
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
