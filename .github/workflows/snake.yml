@@ -18,11 +18,12 @@ jobs:
         with:
           github_user_name: aarjavgodha21
           outputs: |
-            output/snake.svg?color_snake=%23000000&color_dots=%23b9f5d8,%23248a3d,%23206a28,%23155522,%23245521
+            output/snake.svg?color_snake=%2306470c&color_dots=%2339ff14,%23000000,%23000000,%23000000,%23000000&background=%2339ff14
+
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
           author_name: github-actions
           author_email: github-actions@github.com
-          message: "Update GitSnake: black snake, light green bg, dark green activity"
+          message: "Update GitSnake: dark green snake, neon green background, black commits"
           add: "output/*.svg"
