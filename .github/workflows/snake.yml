@@ -1,50 +1,41 @@
-name: Generate GitSnake
+name: Generate Snake Game
 
 on:
-  schedule:
+  schedule: # Runs at 00:00 UTC every day
     - cron: "0 0 * * *"
-  workflow_dispatch:
+  workflow_dispatch: # Allow manual runs
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
+      - name: Checkout main branch
         uses: actions/checkout@v3
-
-      - name: Generate themed snake SVGs
-        uses: Platane/snk/svg-only@v3
         with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            dist/github-contribution-grid-snake.svg?palette=github-light&color_snake=%2300A0C6
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=%2339FF14
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ref: main
 
-      - name: Debug - show dist contents
+      - name: Generate snake animation
+        uses: Platane/snk@v3
+        with:
+          github_user_name: aarjavgodha21
+          outputs: dist/github-contribution-grid-snake.svg
+
+      - name: Checkout output branch
+        uses: actions/checkout@v3
+        with:
+          ref: output
+          fetch-depth: 0   # fetch full history so commits stack properly
+
+      - name: Move generated files
         run: |
-          echo "==== dist folder listing ===="
-          ls -la dist || true
-          echo "==== show file names (raw) ===="
-          for f in dist/*; do printf "%s\n" "$f"; done || true
+          rm -rf dist
+          mkdir -p dist
+          cp ../dist/github-contribution-grid-snake.svg ./dist/
 
-      # Optional safety: if the generator created files with query in name,
-      # this step renames them to canonical names (uncomment if you see weird names).
-      #- name: Normalise filenames (uncomment if needed)
-      #  run: |
-      #    for f in dist/*\?*; do
-      #      basename=$(basename "$f" | sed 's/%23/#/g' | sed 's/[?].*//g')
-      #      mv -- "$f" "dist/${basename}"
-      #    done || true
-      #
-      # Above is commented out — only enable if you see query-encoded names in logs.
-
-      - name: Commit dist files to output branch
-        uses: EndBug/add-and-commit@v9
+      - name: Commit & Push changes
+        uses: github-actions-x/commit@v2.9
         with:
-          author_name: "GitSnake Action"
-          author_email: "actions@github.com"
-          message: "Generate GitSnake"
-          add: "dist/*"
-          branch: output
+          message: "update snake game"
+          push: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
