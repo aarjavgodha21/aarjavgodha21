@@ -17,15 +17,12 @@
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
 
 
-# ⚡️ GitSnake:
-
 <div align="center">
 
-### 🐍 GitSnake
+### ⚡️ GitSnake
 
-![GitHub Snake Light](https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/output/dist/snake-light.svg#gh-light-mode-only)
-![GitHub Snake Dark](https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/output/dist/snake-dark.svg#gh-dark-mode-only)
+![GitSnake Light](https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/output/dist/snake-light.svg#gh-light-mode-only)
+![GitSnake Dark](https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/output/dist/snake-dark.svg#gh-dark-mode-only)
 
 </div>
-
 
