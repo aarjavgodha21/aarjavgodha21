@@ -11,6 +11,7 @@
 # 🐍 Snake Eater Game:
 ![snake gif](https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/output/github-contribution-grid-snake.svg)
 
+
 # 📊 GitHub Stats:
 ![](https://github-readme-stats.vercel.app/api?username=aarjavgodha21&theme=dark&hide_border=false&include_all_commits=false&count_private=false)<br/>
 ![](https://nirzak-streak-stats.vercel.app/?user=aarjavgodha21&theme=dark&hide_border=false)<br/>
