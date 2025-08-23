@@ -8,7 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -18,24 +17,13 @@ jobs:
         with:
           github_user_name: aarjavgodha21
           outputs: |
-            output/snake-dark.svg?palette=github-dark
-            output/snake-light.svg?palette=github-light
-
-      - name: Adjust colors for dark theme
-        run: |
-          sed -i 's/#26a641/#00ffff/g' output/snake-dark.svg || true
-          sed -i 's/#161b22/#0d1117/g' output/snake-dark.svg || true
-          sed -i 's/#40c463/#00ffff/g' output/snake-dark.svg || true
-
-      - name: Adjust colors for light theme
-        run: |
-          sed -i 's/#40c463/#0077ff/g' output/snake-light.svg || true
-          sed -i 's/#ebedf0/#f0f6fc/g' output/snake-light.svg || true
+            output/snake-dark.svg?palette=github-dark&color_snake=%2300fff7&color_dots=%23102f43,%23143e53,%231f6995,%2333ffe6,%2300fff7&background=%23041318
+            output/snake-light.svg?palette=github-light&color_snake=%2300758a&color_dots=%23e0f7fa,%23b2ebf2,%237ec6e3,%234ab4c4,%2300758a&background=%23f7fafc
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
           author_name: github-actions
           author_email: github-actions@github.com
-          message: "Updated snake SVGs with custom colors"
+          message: "Updated snake SVGs with neon and aesthetic backgrounds"
           add: "output/*.svg"
