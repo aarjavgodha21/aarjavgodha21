@@ -17,5 +17,5 @@
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
 
 
-# 🐍 Snake Eater Game:
+# ⚡️GitSnake:
 ![Snake animation](https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/output/github-contribution-grid-snake.svg)
