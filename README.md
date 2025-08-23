@@ -19,10 +19,8 @@
 
 <div align="center">
 
-  ### ⚡️ GitSnake
-
-  <img alt="snake animation eating my contributions" src="https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/output/snake.svg" />
-
+### ⚡️ GitSnake
+<img alt="snake animation eating my contributions" src="https://raw.githubusercontent.com/aarjavgodha21/aarjavgodha21/main/output/snake.svg" />
 </div>
 
 
