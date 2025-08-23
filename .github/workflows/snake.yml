@@ -2,17 +2,18 @@ name: Generate Snake
 
 on:
   schedule:
-    - cron: "0 */12 * * *"  # Runs every 12 hours
+    - cron: "0 */12 * * *"
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Generate Snake Game
+      - name: Generate snake SVGs
         uses: Platane/snk@v3
         with:
           github_user_name: aarjavgodha21
@@ -20,20 +21,21 @@ jobs:
             output/snake-dark.svg?palette=github-dark
             output/snake-light.svg?palette=github-light
 
-      - name: Customize Snake Dark Theme
+      - name: Adjust colors for dark theme
         run: |
-          sed -i 's/#26a641/#00ffff/g' output/snake-dark.svg   # Snake cyan
-          sed -i 's/#000000/#0d1117/g' output/snake-dark.svg   # Background dark grey
-          sed -i 's/#ffffff/#00ffff/g' output/snake-dark.svg   # Food glow cyan
+          sed -i 's/#26a641/#00ffff/g' output/snake-dark.svg || true
+          sed -i 's/#161b22/#0d1117/g' output/snake-dark.svg || true
+          sed -i 's/#40c463/#00ffff/g' output/snake-dark.svg || true
 
-      - name: Customize Snake Light Theme
+      - name: Adjust colors for light theme
         run: |
-          sed -i 's/#26a641/#0077ff/g' output/snake-light.svg  # Snake blue
-          sed -i 's/#ffffff/#f0f6fc/g' output/snake-light.svg  # Background light
-          sed -i 's/#000000/#0077ff/g' output/snake-light.svg  # Food glow blue
+          sed -i 's/#40c463/#0077ff/g' output/snake-light.svg || true
+          sed -i 's/#ebedf0/#f0f6fc/g' output/snake-light.svg || true
 
-      - name: Push to GitHub
+      - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
-          message: "Updated Snake Game"
+          author_name: github-actions
+          author_email: github-actions@github.com
+          message: "Updated snake SVGs with custom colors"
           add: "output/*.svg"
